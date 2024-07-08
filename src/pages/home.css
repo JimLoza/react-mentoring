@@ -1,0 +1,30 @@
+.search-container {
+    height: 20vh;
+}
+
+.pokemons-list {
+    height: 80vh;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    height: auto;
+    gap: 1rem;
+}
+
+.pokemon-footer {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 2.5rem;
+}
+
+.button-previous-disabled:hover {
+    cursor: not-allowed;
+    border: none;
+}
+
+
+
+
+/* button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+} */

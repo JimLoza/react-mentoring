@@ -7,7 +7,7 @@ export const RouterComponent = () => {
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/pokemon/:id" element={<PokemonDetails />} />
+                <Route path="/details/:name" element={<PokemonDetails />} />
             </Routes>
         </Router>
     )
