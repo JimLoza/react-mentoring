@@ -1,5 +1,7 @@
+import { useAppDispatch } from '../../redux/hooks';
 import './card.css';
 import { useNavigate } from 'react-router-dom';
+import { addToCart } from '../../redux/slices/carrito';
 
 
 interface PropTypesCardI {
@@ -18,6 +20,20 @@ export const Card = ({ name, url }: PropTypesCardI) => {
 
     }
 
+    const  dispatch = useAppDispatch();
+    const handleAddToCart = () => {
+        dispatch(
+            addToCart(
+                {
+                id : 0,
+                name,
+                info: "",
+                url,
+                }
+            ),
+        );
+    };
+
     return (
         <div className='card'>
             <div className="card-name">
@@ -28,6 +44,11 @@ export const Card = ({ name, url }: PropTypesCardI) => {
                 <button
                     onClick={handleOnClik}
                 >Ver más</button>
+            </div>
+            <div className="card-actions">
+                <button
+                    onClick={handleAddToCart}
+                >Add to car</button>
             </div>
         </div>
     )

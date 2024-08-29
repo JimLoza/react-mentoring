@@ -1,0 +1,1 @@
+export { carritoSlice } from './carrito'
