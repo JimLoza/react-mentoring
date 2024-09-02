@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './home.css'
 import { Card } from '../components/Card/Card';
 import { URL } from '../utils/constants';
+import { UserContext, UserContextI } from '../contexts/UserContext';
 
 interface PokemonDataI {
     data: any[];
@@ -14,6 +15,7 @@ interface PokemonDataI {
 
 export const Home = () => {
     const navigate = useNavigate();
+    const { user } = useContext(UserContext) as UserContextI;
 
     const [values, setValues] = useState<{ search: string }>({
         search: ''
@@ -87,6 +89,9 @@ export const Home = () => {
             <div
                 className='search-container'
             >
+                {
+                    user.online && <h2>Bienvenido {user.name}</h2>
+                }
                 <h1>Busca un Pokemon</h1>
                 <input name='search' id='search' onChange={handleOnChange} type='text' value={values.search} />
                 <button

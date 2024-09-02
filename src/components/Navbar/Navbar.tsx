@@ -1,29 +1,25 @@
-import { FC, ReactElement, useState } from 'react'
+import { FC, ReactElement, useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Modal } from '../common/Modal/Modal'
+import { UserContext, UserContextI } from '../../contexts/UserContext';
+import profilePhoto from '../../assets/profile/1.jpg';
 import './navbar.css'
-
-const Modal: FC = (): ReactElement => {
-    return (
-        <div className='modal'>
-            <div className="modal-content">
-                <h1>Modal</h1>
-                <p>Modal</p>
-                <button
-                >Cerrar</button>
-            </div>
-        </div>
-    )
-
-}
 
 export const Navbar: FC = (): ReactElement => {
     const [open, setOpen] = useState(false)
     const navigate = useNavigate();
-    const handleNavigation = () => {
-        navigate(`/`)
+
+    const { user, removeUserInfo } = useContext(UserContext) as UserContextI;
+
+    const handleLogout = () => {
+        removeUserInfo();
     }
+
     const handleOpenModal = () => {
         setOpen(!open)
+    }
+    const handleNavigation = () => {
+        navigate(`/`)
     }
     return (
         <nav
@@ -48,13 +44,23 @@ export const Navbar: FC = (): ReactElement => {
             </div>
             <div className="nav-item-right">
                 <p
-                    onClick={handleOpenModal}
+                    onClick={user.online ? handleLogout : handleOpenModal}
                 >
-                    Login
+                    {
+                        user.online ? 'Logout' : 'Login'
+                    }
                 </p>
+                {
+                    user.online &&
+                    <div className="profile-photo">
+                        <img src={profilePhoto} alt="dui" className='profile-photo-nav' />
+
+
+                    </div>
+                }
             </div>
             {
-                open && <Modal />
+                open && <Modal hanldeOpenModal={handleOpenModal} />
             }
         </nav>
     )
