@@ -22,7 +22,10 @@ export const carritoSlice = createSlice({
   initialState,
   reducers: {
     addToCart : (state, action: PayloadAction<CartAddState>) => {
-        if(state.length || state.filter((item) => item.id === action.payload.id).length) state.push(action.payload)
+      console.log(state);
+      console.log(action.payload);
+      state = [...state, action.payload]
+        // if(state.length || state.filter((item) => item.id === action.payload.id).length) 
     },
     removeToCart : (state, action: PayloadAction<CartRemoveState>) => {} 
   },
@@ -31,3 +34,4 @@ export const carritoSlice = createSlice({
 
 export const { addToCart, removeToCart} = carritoSlice.actions
 
+export default carritoSlice.reducer

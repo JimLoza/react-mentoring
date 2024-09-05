@@ -21,7 +21,8 @@ export const Card = ({ name, url }: PropTypesCardI) => {
     }
 
     const  dispatch = useAppDispatch();
-    const handleAddToCart = () => {
+    const handleAddToCart = (name: any) => {
+        console.log("Si llega" + name)
         dispatch(
             addToCart(
                 {
@@ -47,7 +48,7 @@ export const Card = ({ name, url }: PropTypesCardI) => {
             </div>
             <div className="card-actions">
                 <button
-                    onClick={handleAddToCart}
+                    onClick={() => handleAddToCart(name)}
                 >Add to car</button>
             </div>
         </div>
